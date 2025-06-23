@@ -40,8 +40,8 @@ export default function ProfilePage() {
     }
   }, [router])
 
-  if (!user) return <p className="text-center mt-10">Redirecting...</p>
-  if (loading) return <p className="text-center mt-10">Loading...</p>
+  if (!user) return <p className="text-center mt-20 md:28">Redirecting...</p>
+  if (loading) return <p className="text-center mt-20 md:28">Loading...</p>
 
   return (
     <div className="max-w-4xl mx-auto mt-18 md:mt-24 p-4">
