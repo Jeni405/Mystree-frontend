@@ -1,13 +1,15 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import { Pencil, Home, BookOpen, Tags, User, LogOut, LogIn } from 'lucide-react'
 
 export default function Navbar() {
   const router = useRouter()
   const [user, setUser] = useState(null)
+  const [clicked, setClicked] = useState(false)
+  const boxRef = useRef(null);
 
   // Watch for route changes and update user from localStorage
   useEffect(() => {
@@ -32,6 +34,28 @@ export default function Navbar() {
       router.events?.off('routeChangeComplete', handleRouteChange)
     }
   }, [router])
+
+  const handleClick = () => {
+    setClicked(true)
+  }
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (boxRef.current && !boxRef.current.contains(e.target)) {
+        setClicked(false);
+      }
+    };
+
+    if (clicked) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    } else {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [clicked]);
 
   const handleLogout = () => {
     localStorage.removeItem('user')
@@ -66,12 +90,19 @@ export default function Navbar() {
 
     {user ? (
       <div className="relative group">
-        <span className="cursor-pointer text-md flex md:gap-1 md:text-xl"><User className="w-5 h-5 md:w-6 md:h-6" /> <span className='hidden md:block'>{user.name} </span></span>
-       
-        <div className="absolute group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 bg-white text-black right-0 mt-2 py-2 md:py-4 px-4 md:px-6 md:text-xl rounded shadow">
+        <span className="cursor-pointer text-md flex md:gap-1 md:text-xl"><User onClick={handleClick} className="w-5 h-5 md:w-6 md:h-6" /> <span className='hidden md:block'>{user.name} </span></span>
+
+        {clicked && (
+        <div ref={boxRef} className="absolute group-hover:opacity-100 visible group-hover:visible transition-all duration-200 bg-white text-black right-0 mt-2 py-2 md:py-4 px-4 md:px-6 md:text-xl rounded shadow">
           <Link className='' href="/profile">Profile</Link><br />
           <button className="cursor-pointer" onClick={handleLogout}>Logout</button>
-        </div>
+        </div> 
+        ) 
+      }
+      <div ref={boxRef} className="absolute group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 bg-white text-black right-0 mt-2 py-2 md:py-4 px-4 md:px-6 md:text-xl rounded shadow">
+          <Link className='' href="/profile">Profile</Link><br />
+          <button className="cursor-pointer" onClick={handleLogout}>Logout</button>
+        </div> 
         
       </div>
     ) : (
