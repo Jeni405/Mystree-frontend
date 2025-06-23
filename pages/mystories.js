@@ -54,7 +54,7 @@ export default function MyStories() {
     {stories.map((story) => (
       <div key={story._id} className="relative">
         <StoryCard story={story} />
-        <div className="absolute top-4 right-6 flex gap-3">
+        <div className="absolute top-2 md:top-4 right-2 md:right-6 flex gap-2 md:gap-3">
           <button
             onClick={() => router.push(`/edit/${story._id}`)}
             className="text-blue-600 text-sm font-medium cursor-pointer"

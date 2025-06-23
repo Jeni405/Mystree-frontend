@@ -47,9 +47,9 @@ export default function Home({ stories }) {
 
 
   return (
-    <div className="max-w-5xl mx-4 mt-20 md:mt-28 space-y-6">
+    <div className="max-w-5xl mx-2 md:mx-6 mt-20 md:mt-28 space-y-6">
       <div className='flex items-center justify-between mb-10'>
-        <h1 className="text-2xl md:text-3xl font-bold px-1">All Stories</h1>
+        <h1 className="text-xl md:text-3xl font-bold px-1">All Stories</h1>
         
           { user ? 
           ( 
@@ -60,12 +60,12 @@ export default function Home({ stories }) {
           </div>
           ) : ( 
             <div className='pr-2'>
-              <Link className='p-5' href="/"><input className="text-lg px-2 w-28 font-bold border rounded" 
+              <Link className='px-2 md:px-6' href="/"><input className="text-md md:text-xl px-2 md:px-4 md:py-1 w-24 md:w-38 font-bold border rounded" 
               type="text" placeholder="🔍Search" 
               value={searchTerm} 
               onChange={(e) => setSearchTerm(e.target.value)}></input>
               </Link>
-              <Link href="/write"><span className='text-lg font-bold border rounded p-1'>🖊️</span></Link> 
+              <Link href="/write"><span className='text-sm md:text-lg font-bold border rounded p-1 md:p-2'>🖊️</span></Link> 
             </div>
           )
           
