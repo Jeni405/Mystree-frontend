@@ -43,7 +43,7 @@ export default function WritePage() {
 
 
 
-  if (!user) return <p className="text-center mt-10">Redirecting...</p>
+  if (!user) return <p className="text-center mt-20 md:mt-28">Redirecting...</p>
 
   return (
     <div className="max-w-2xl mx-auto mt-20 md:mt-28">

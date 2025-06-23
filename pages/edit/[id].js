@@ -34,10 +34,10 @@ export default function EditStory() {
     }
   }
 
-  if (loading) return <p className="text-center mt-10">Loading...</p>
+  if (loading) return <p className="text-center mt-20 md:mt-28">Loading...</p>
 
   return (
-    <div className="max-w-2xl mx-auto mt-10">
+    <div className="max-w-2xl mx-auto mt-20 md:mt-28">
       <h1 className="text-2xl font-bold mb-4">Edit Story</h1>
       <form onSubmit={handleUpdate} className="space-y-4">
         <input

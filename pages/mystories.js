@@ -39,8 +39,8 @@ export default function MyStories() {
     }
   }, [router])
 
-  if (!user) return <p className="text-center mt-10">Redirecting...</p>
-  if (loading) return <p className="text-center mt-10">Loading...</p>
+  if (!user) return <p className="text-center mt-20 md:mt-28">Redirecting...</p>
+  if (loading) return <p className="text-center mt-20 md:mt-28">Loading...</p>
 
   return (
 <>
